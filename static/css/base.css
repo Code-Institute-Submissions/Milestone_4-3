@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,800');
+
+
+/* General Styles */
+.html {
+    height: 100%;
+}
+
+body {
+    background: url('/media/home2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    font-family:open sans;
+    letter-spacing:0.4px;
+    color:#777777;
+}
+
+h1, h2 ,h3 ,h4 ,h5 , h6 {
+    font-family:montserrat;
+    color:#2e2e2e;
+}
+p {
+    font-family:open sans;
+    color:#666666;
+    line-height:26px;
+    font-size:14px;
+    letter-spacing:0.4px;
+}
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+
+
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
