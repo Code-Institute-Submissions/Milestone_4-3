@@ -34,7 +34,36 @@
     <title>Rent My House {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top"></header>
+    <header class="container-fluid fixed-top pl-0 pr-0">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+        <a class="navbar-brand" href="{% url 'home' %}">RentMyHouse</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+         </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id= "navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown link
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Drop 1 Link</a>
+            <a class="dropdown-item" href="#">Drop 2 Link</a>
+            <a class="dropdown-item" href="#">Drop 3 Link</a>
+          </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    </header>
 
     {% if messages %}
         <div class="message-container"></div>
