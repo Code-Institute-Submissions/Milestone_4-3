@@ -68,6 +68,22 @@ p {
     border-color: #fff;
 }
 
+.profile-form-input::placeholder {
+    color: #a7a7a7;
+}
+
+.profile-form-input .form-control {
+    color: red;
+}
+
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #000;
+}
+
+#id_default_country option:first-child {
+    color: #a7a7a7;
+}
 
 /* -------------------------------- Media Queries */
 
