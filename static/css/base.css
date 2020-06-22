@@ -8,8 +8,8 @@
 }
 
 body {
-    background: url('/media/home2.jpg') no-repeat center center fixed;
-    background-size: cover;
+    /* background: url('/media/home2.jpg') no-repeat center center fixed;
+    background-size: cover; */
     height: calc(100vh - 164px);
     font-family:open sans;
     letter-spacing:0.4px;
@@ -44,7 +44,29 @@ p {
     width: fit-content;
 }
 
+.border-black {
+    border: 1px solid black !important;
+}
 
+.flat-btn {
+    border: 1px solid #ff2929;
+    color: #ff2929;
+    background-color: #fff;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    padding: 16px 36px;
+    margin: 0px 10px 10px 0px;
+}
+
+.flat-btn:hover,
+.flat-btn:active,
+.flat-btn:focus {
+    background: #ff2929;
+    color: #fff !important;
+    border-color: #fff;
+}
 
 
 /* -------------------------------- Media Queries */
@@ -69,4 +91,57 @@ p {
     .header-container {
         padding-top: 164px;
     }
+}
+
+/* Allauth form formatting */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    color: #6c757d; 
+    clear: both;
+}
+
+.allauth-form-inner-content input {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: medium none;
+    color: #a7a7a7;
+    font-family: montserrat;
+    font-weight: 500;
+    padding: 21px;
+
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+    background: #f9f9f9 none repeat scroll 0 0;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+
+	border: 1px solid transparent;
+    color: #fff;
+    background-color: #ff2929;
+    float: left;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 16px 36px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+    background: #fff;
+    color: #ff2929 !important;
+    border-color: #ff2929;
+}
+
+.allauth-form-inner-content a {
+    color: #ff2929; 
+    
 }
