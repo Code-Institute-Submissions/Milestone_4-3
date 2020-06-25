@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+        
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -32,6 +36,9 @@ class Image(models.Model):
 
 class Property(models.Model):
     # TODO add here agent
+    class Meta:
+        verbose_name_plural = 'Properies'
+
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     short_description = models.CharField(max_length=254)
     address = models.CharField(max_length=254)
