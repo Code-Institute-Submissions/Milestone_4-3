@@ -10,10 +10,68 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                {{ properties }}
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">All properties</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="property-container col-10 offset-1">media is {{ MEDIA_ROOT }} {{ STATIC_URL }} {{ MEDIA_URL }}
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for property in properties %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card h-100 border-0">
+                                {% if property.image_name %}
+                                <a href="{% url 'property_details' property.id %}">
+                                    <img class="card-img-top img-fluid" src="{{ property.image.url }}" alt="{{ property.short_description }}">
+                                </a>
+                                {% else %}
+                                <a href="{% url 'property_details' property.id %}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_ROOT }}/noimage.png" alt="{{ property.short_description }}">
+                                </a>
+                                {% endif %}
+                                <div class="card-body pb-0">
+                                    <p class="mb-0">{{ property.short_description }}</p>
+                                </div>
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="lead mb-0 text-left font-weight-bold">£ {{ property.monthly_price }} pcm</p>
+                                            {% if property.rating %}
+                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ property.rating }} / 5</small>
+                                            {% else %}
+                                                <small class="text-muted">No Rating</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:1 %}
+                            <div class="col-12 d-sm-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}                        
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:4 %}
+                            <div class="col-12 d-none d-xl-block mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
