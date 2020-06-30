@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Property
 from .forms import PropertyForm
 
@@ -28,7 +28,16 @@ def property_details(request, property_id):
 
 def add_property(request):
     """ Add a property to rent """
-    form = PropertyForm()
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('add_property'))
+        # else:
+            # error
+    else:
+        form = PropertyForm()
+
     template = 'properties/add_property.html'
     context = {
         'form': form,

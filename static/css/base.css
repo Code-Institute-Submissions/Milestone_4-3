@@ -85,7 +85,7 @@ p {
     color: #a7a7a7;
 }
 
-/* -------------------------------- Media Queries */
+ /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
@@ -124,9 +124,9 @@ p {
     border: medium none;
     color: #a7a7a7;
     font-family: montserrat;
-    font-weight: 500;
+    font-weight: 400;
     padding: 21px;
-
+    height: unset;
 }
 
 .allauth-form-inner-content label:not([for='id_remember']) {

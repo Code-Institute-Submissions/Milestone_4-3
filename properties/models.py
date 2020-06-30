@@ -34,7 +34,7 @@ class Image(models.Model):
 class Property(models.Model):
     # TODO add here agent
     class Meta:
-        verbose_name_plural = 'Properies'
+        verbose_name_plural = 'Properties'
 
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     short_description = models.CharField(max_length=254)
