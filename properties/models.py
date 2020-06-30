@@ -22,9 +22,6 @@ class Feature(models.Model):
     def __str__(self):
         return self.name
 
-    def get_friendly_name(self):
-        return self.friendly_name
-
 class Image(models.Model):
     property = models.ForeignKey('Property', null=False, blank=False, on_delete=models.CASCADE)
     image_url = models.URLField(max_length=1024, null=False, blank=False)

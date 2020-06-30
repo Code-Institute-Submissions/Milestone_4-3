@@ -117,7 +117,9 @@ p {
     clear: both;
 }
 
-.allauth-form-inner-content input {
+.allauth-form-inner-content input,
+.form-field-custom
+ {
     background: #f9f9f9 none repeat scroll 0 0;
     border: medium none;
     color: #a7a7a7;
@@ -137,7 +139,8 @@ p {
 }
 
 .allauth-form-inner-content button,
-.allauth-form-inner-content input[type='submit'] {
+.allauth-form-inner-content input[type='submit'],
+.btn-submit {
 
 	border: 1px solid transparent;
     color: #fff;
@@ -151,7 +154,8 @@ p {
 }
 
 .allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
+.allauth-form-inner-content input[type='submit']:hover,
+.btn-submit:hover {	
     background: #fff;
     color: #ff2929 !important;
     border-color: #ff2929;

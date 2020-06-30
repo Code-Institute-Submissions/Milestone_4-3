@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Property
+from .forms import PropertyForm
 
 # Create your views here.
 
@@ -24,3 +25,13 @@ def property_details(request, property_id):
     }
 
     return render(request, 'properties/property_details.html', context)
+
+def add_property(request):
+    """ Add a property to rent """
+    form = PropertyForm()
+    template = 'properties/add_property.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
