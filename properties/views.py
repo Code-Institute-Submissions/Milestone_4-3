@@ -44,3 +44,24 @@ def add_property(request):
     }
 
     return render(request, template, context)
+
+def edit_property(request, property_id):
+    """ Edit a property """
+    property = get_object_or_404(Property, pk=property_id)
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, request.FILES, instance=property)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('property_details', args=[property.id]))
+        # else:
+            # error
+    else:
+        form = PropertyForm(instance=property)
+
+    template = 'properties/edit_property.html'
+    context = {
+        'form': form,
+        'property': property,
+    }
+
+    return render(request, template, context)

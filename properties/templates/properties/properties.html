@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="property-container col-10 offset-1">media is {{ MEDIA_ROOT }} {{ STATIC_URL }} {{ MEDIA_URL }}
+            <div class="property-container col-10 offset-1">
                 <div class="row mt-1 mb-2"></div>
                 <div class="row">
                     {% for property in properties %}
@@ -30,7 +30,7 @@
                                 </a>
                                 {% else %}
                                 <a href="{% url 'property_details' property.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_ROOT }}/noimage.png" alt="{{ property.short_description }}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ property.short_description }}">
                                 </a>
                                 {% endif %}
                                 <div class="card-body pb-0">
