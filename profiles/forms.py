@@ -1,6 +1,20 @@
 from django import forms
 from .models import UserProfile
 
+from allauth.account.forms import SignupForm
+
+class CustomSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomSignupForm, self).__init__(*args, **kwargs)
+        self.fields['property_owner'] = forms.BooleanField(required=False)
+        self.fields['property_owner'].label = 'Register as property owner ?'
+        self.fields['email'].widget.attrs['autofocus'] = 'autofocus'
+        self.fields['username'].widget.attrs['autofocus'] = ''
+
+    def save(self, request):
+        property_owner = self.cleaned_data.pop('property_owner')
+        user = super(CustomSignupForm, self).save(request)
+        return user
 
 class UserProfileForm(forms.ModelForm):
     class Meta:

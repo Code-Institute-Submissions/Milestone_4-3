@@ -28,6 +28,10 @@ p {
     letter-spacing:0.4px;
 }
 
+small {
+    display: block;
+}
+
 .icon {
     align-items: center;
     display: inline-flex;
@@ -133,6 +137,13 @@ p {
     display: none;
     background: #f9f9f9 none repeat scroll 0 0;
 }
+
+.allauth-form-inner-content label[for='id_property_owner'] {
+    display: block;
+    background: #fff;
+    color: #a7a7a7;
+}
+
 
 .allauth-form-inner-content input::placeholder {
     color: #aab7c4;

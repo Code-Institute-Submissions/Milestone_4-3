@@ -36,6 +36,13 @@
                     {% endif %}
                     <p class="mt-3">{{ property.short_description }}</p>
                     <p class="mt-3">{{ property.long_description }}</p>
+
+                    {% if request.user.is_superuser %}
+                        <small class="ml-3">
+                            <a href="{% url 'edit_property' property.id %}">Edit</a> | 
+                            <a class="text-danger" href="{% url 'delete_property' property.id %}">Delete</a>
+                        </small>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Property
 from .forms import PropertyForm
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def all_properties(request):
@@ -26,6 +28,7 @@ def property_details(request, property_id):
 
     return render(request, 'properties/property_details.html', context)
 
+@login_required
 def add_property(request):
     """ Add a property to rent """
     if request.method == 'POST':
@@ -45,13 +48,15 @@ def add_property(request):
 
     return render(request, template, context)
 
+@login_required
 def edit_property(request, property_id):
     """ Edit a property """
+    print(request.user)
     property = get_object_or_404(Property, pk=property_id)
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES, instance=property)
         if form.is_valid():
-            form.save()
+            property = form.save()
             return redirect(reverse('property_details', args=[property.id]))
         # else:
             # error
@@ -65,3 +70,10 @@ def edit_property(request, property_id):
     }
 
     return render(request, template, context)
+
+@login_required
+def delete_property(request, property_id):
+    """ Delete a property """
+    property = get_object_or_404(Property, pk=property_id)
+    property.delete()
+    return redirect(reverse('properties'))
