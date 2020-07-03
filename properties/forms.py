@@ -1,5 +1,6 @@
 from django import forms
 from .models import Property, Category
+from .widgets import CustomClearableFileInput
 
 
 class PropertyForm(forms.ModelForm):
@@ -7,6 +8,8 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = '__all__'
+
+    image_name = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

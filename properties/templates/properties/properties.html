@@ -26,7 +26,7 @@
                             <div class="card h-100 border-0">
                                 {% if property.image_name %}
                                 <a href="{% url 'property_details' property.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ property.image.url }}" alt="{{ property.short_description }}">
+                                    <img class="card-img-top img-fluid" src="{{ property.image_name.url }}" alt="{{ property.short_description }}">
                                 </a>
                                 {% else %}
                                 <a href="{% url 'property_details' property.id %}">

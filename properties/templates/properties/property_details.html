@@ -14,13 +14,13 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
-                        {% if property.image.image_name %}
+                        {% if property.image_name %}
                         <a href="{{ property.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ property.image.image_url }}" alt="{{ property.name }}">
+                            <img class="card-img-top img-fluid" src="{{ property.image_name.url }}" alt="{{ property.short_description }}">
                         </a>
                         {% else %}
                         <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ property.name }}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ property.short_description }}">
                         </a>
                     {% endif %}
                 </div>

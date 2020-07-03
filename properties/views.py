@@ -51,7 +51,6 @@ def add_property(request):
 @login_required
 def edit_property(request, property_id):
     """ Edit a property """
-    print(request.user)
     property = get_object_or_404(Property, pk=property_id)
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES, instance=property)
