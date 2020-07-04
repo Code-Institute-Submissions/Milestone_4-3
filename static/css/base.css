@@ -10,7 +10,7 @@
 body {
     /* background: url('/media/home2.jpg') no-repeat center center fixed;
     background-size: cover; */
-    height: calc(100vh - 164px);
+    /* height: calc(100vh - 164px); */
     font-family:open sans;
     letter-spacing:0.4px;
     color:#777777;
@@ -115,6 +115,35 @@ small {
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0;
+}
+
+
+/* Toasts */
+.custom-toast {
+    background: #1a1a1a none repeat scroll 0 0;
+    float: left;
+    padding: 17px 0;
+    max-width: unset;
+    width: 100%;
+    margin-top: 64px;
+}
+
+.toast-header {
+    color: #b7b7b7;
+    float: left;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    line-height: 20px;
+    background-color: transparent;
+}
+
+.toast-header .close {
+    background: #424242 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #dfdfdf;
+    height: 29px;
+    text-align: center;
+    width: 29px;
 }
 
 

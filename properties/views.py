@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib import messages
 from .models import Property
 from .forms import PropertyForm
 
@@ -56,14 +57,15 @@ def edit_property(request, property_id):
         form = PropertyForm(request.POST, request.FILES, instance=property)
         if form.is_valid():
             property = form.save()
+            messages.success(request, 'Property Successfully updated')
             return redirect(reverse('property_details', args=[property.id]))
-        # else:
-            # error
+        else:
+            messages.error(request, 'Failed to update property.<br>Please ensure the form is valid.')
     else:
         form = PropertyForm(instance=property)
 
     template = 'properties/edit_property.html'
-    context = {
+    context = { 
         'form': form,
         'property': property,
     }
