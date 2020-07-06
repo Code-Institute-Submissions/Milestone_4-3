@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'properties',
 
     'crispy_forms',
-    # 'debug_toolbar',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
