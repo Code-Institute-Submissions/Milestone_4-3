@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from .models import Property
-from .forms import PropertyForm
+from .forms import PropertyForm, PropertyImagesForm
 
 from django.contrib.auth.decorators import login_required
 
@@ -78,3 +78,16 @@ def delete_property(request, property_id):
     property = get_object_or_404(Property, pk=property_id)
     property.delete()
     return redirect(reverse('properties'))
+
+@login_required
+def property_images(request, property_id):
+    """ Change property additional images """
+    template = 'properties/property_images.html'
+    form = PropertyImagesForm(request.POST, request.FILES)
+
+    context = { 
+        'form': form,
+        'property_id': property_id,
+    }
+
+    return render(request, template, context)

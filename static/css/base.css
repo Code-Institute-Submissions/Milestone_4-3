@@ -14,6 +14,7 @@ body {
     font-family:open sans;
     letter-spacing:0.4px;
     color:#777777;
+    margin-top: 50px;
 }
 
 h1, h2 ,h3 ,h4 ,h5 , h6 {
@@ -210,7 +211,6 @@ small {
 .allauth-form-inner-content button,
 .allauth-form-inner-content input[type='submit'],
 .btn-submit {
-
 	border: 1px solid transparent;
     color: #fff;
     background-color: #ff2929;
@@ -219,6 +219,7 @@ small {
     font-size: 16px;
     font-weight: bold;
     padding: 16px 36px;
+    margin-bottom: 10px;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -230,7 +231,13 @@ small {
     border-color: #ff2929;
 }
 
-.allauth-form-inner-content a {
+.allauth-form-inner-content a, .def-link {
     color: #ff2929; 
-    
+    text-decoration: none;
 }
+
+.allauth-form-inner-content a:hover, .def-link:hover {
+    color: #ff2929; 
+    text-decoration: none;
+}
+

@@ -29,7 +29,7 @@ class Image(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return self.image
+        return self.image_name
 
 class Property(models.Model):
     # TODO add here agent
