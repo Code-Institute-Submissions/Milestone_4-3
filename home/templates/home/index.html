@@ -3,5 +3,45 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="display-4 text-success">Home Page</h1>
+    <div class="container">
+
+    <div class="heading4">
+                    <h2>RECENT PROPERTIES</h2>
+                    <span>our latest additions</span>
+  </div>
+               <div class="row">
+                    <div class="col-md-12">
+                        <div class="properties-sec">
+                            <div class="row">                                
+                                <div class="col-md-4">
+                                    <div class="properties-box">
+                                        <div class="properties-thumb">
+                                            <img src="{{ MEDIA_URL }}property5.jpg" alt="">
+                                            <span class="spn-status"> For Rent </span>
+                                            <ul class="property-info">
+                                                <li> 
+                                                    <i class="fa  fa-retweet"> </i> <span>1913 sqft </span>                                     
+                                                </li>
+                                                <li class="li-rl"></li>
+                                                <li> 
+                                                    <i class="fa  fa-bed"></i><span>  5   </span>                                 
+                                                </li> 
+                                                <li class="li-rl"></li>
+                                                <li> 
+                                                    <i class="fa  fa-building"> </i> <span>3   </span>                                
+                                                </li>
+                                            </ul> 
+                                        <a class="property-sh-more" href="property.html"><i class="fas fa-info"></i></a>
+                                        </div>
+                                        <h3><a href="property.html" title="">One Property</a></h3>
+                                        <span class="price">120 pcm</span>
+                                    </div><!--  Box -->
+                                </div>                                
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 {% endblock %}
