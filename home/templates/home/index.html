@@ -3,45 +3,110 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
+<div class="container">
 
-    <div class="heading4">
-                    <h2>RECENT PROPERTIES</h2>
-                    <span>our latest additions</span>
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+    {% for carousel in carousel_items %}
+      <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active"> {% endif %}</li>
+    {% endfor %}
+    </ol>
+
+    <div class="carousel-inner">
+      {% for carousel in carousel_items %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+          <img src="{{ carousel.image_name.url }}" class="d-block w-100" alt="{{ carousel.short_description }}">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ carousel.short_description }}</h5>
+            <p>{{ carousel.long_description }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-               <div class="row">
-                    <div class="col-md-12">
-                        <div class="properties-sec">
-                            <div class="row">                                
-                                <div class="col-md-4">
-                                    <div class="properties-box">
-                                        <div class="properties-thumb">
-                                            <img src="{{ MEDIA_URL }}property5.jpg" alt="">
-                                            <span class="spn-status"> For Rent </span>
-                                            <ul class="property-info">
-                                                <li> 
-                                                    <i class="fa  fa-retweet"> </i> <span>1913 sqft </span>                                     
-                                                </li>
-                                                <li class="li-rl"></li>
-                                                <li> 
-                                                    <i class="fa  fa-bed"></i><span>  5   </span>                                 
-                                                </li> 
-                                                <li class="li-rl"></li>
-                                                <li> 
-                                                    <i class="fa  fa-building"> </i> <span>3   </span>                                
-                                                </li>
-                                            </ul> 
-                                        <a class="property-sh-more" href="property.html"><i class="fas fa-info"></i></a>
-                                        </div>
-                                        <h3><a href="property.html" title="">One Property</a></h3>
-                                        <span class="price">120 pcm</span>
-                                    </div><!--  Box -->
-                                </div>                                
-                                
-                                
+
+
+
+  <div class="heading4 mt-4">
+                      <h2>RECENT PROPERTIES</h2>
+                      <span>our latest additions</span>
+  </div>
+
+  <div class="row">
+        <div class="col-md-12">
+            <div class="properties-sec">
+                <div class="row">     
+                  {% for property in properties %}                                          
+                    <div class="col-md-4">
+                        <div class="properties-box">
+                            <div class="properties-thumb">
+                                <img src="{{ property.image_name.url }}" alt="{{ property.short_description }}">
+                                <span class="spn-status"> For Rent </span>
+                                <ul class="property-info">
+                                    <li> 
+                                        <i class="fa  fa-retweet"> </i> <span>1913 sqft </span>                                     
+                                    </li>
+                                    <li class="li-rl"></li>
+                                    <li> 
+                                        <i class="fa  fa-bed"></i><span>  5   </span>                                 
+                                    </li> 
+                                    <li class="li-rl"></li>
+                                    <li> 
+                                        <i class="fa  fa-building"> </i> <span>3   </span>                                
+                                    </li>
+                                </ul> 
+                            <a class="property-sh-more" href="{% url 'property_details' property.id %}"><i class="fas fa-info"></i></a>
                             </div>
+                            <h3><a href="{% url 'property_details' property.id %}" title="">One Property</a></h3>
+                            <span class="price">120 pcm</span>
                         </div>
-                    </div>
+                    </div>                                
+                   {% endfor %}  
                 </div>
             </div>
+        </div>
+  </div>
+
+</div>
+<footer class="light-footer">
+            <div class="bottom-line">
+                <div class="container">
+                    <span>Copyright <a href="{% url 'home' %}" title="Home">RentMyHouse</a> 2020</span>
+                    <ul>
+                        <li><a title="" href="{% url 'home' %}">HOME</a></li>
+                        <li><a title="" href="#">ABOUT</a></li>
+                        <li><a title="" href="#">PROPERTIES</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="scrollToTop"><i class="fas fa-arrow-up"></i></a>
+</footer>
+
+<script>
+jQuery(document).ready(function($){
+
+    // scroll to top functionality
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').show().fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut().hide();
+        }
+    });
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},360);
+        return false;
+    });
+});
+</script>
+
 {% endblock %}
