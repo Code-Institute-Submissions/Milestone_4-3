@@ -17,6 +17,17 @@ class UserProfile(models.Model):
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
     default_country = CountryField(blank_label='Country', null=True, blank=True)
 
+    class Types(models.TextChoices):
+        OWNER = "OWNER", "Owner"
+        TENANT = "TENANT", "Tenant"
+
+    base_type = Types.OWNER
+
+    # What type of user are we?
+    default_type = models.CharField(
+       ("Types"), max_length=50, choices=Types.choices, default=base_type
+    ) 
+
     def __str__(self):
         return self.user.username
 
@@ -26,5 +37,6 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     """ Create or update the user profile """
     if created:
         UserProfile.objects.create(user=instance)
+        
     # Existing users: just save the profile
     instance.userprofile.save()

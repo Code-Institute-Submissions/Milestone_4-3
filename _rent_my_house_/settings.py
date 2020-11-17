@@ -86,6 +86,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.media',  # required for media folder
                 'django.contrib.messages.context_processors.messages',
+                'profiles.user_context_processor.user_details',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

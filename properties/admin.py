@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Category, Feature, Image, Property
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('short_description', 'category', 'monthly_price')
+    list_display = ('short_description', 'category', 'monthly_price', 'owner')
     ordering = ('category', )
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -18,6 +18,17 @@ def all_properties(request):
 
     return render(request, 'properties/properties.html', context)
 
+@login_required
+def listings(request):
+    properties = Property.objects.all()
+
+    context = {
+        'properties': properties,
+    }
+    print("something")
+    return render(request, 'properties/properties.html', context)
+
+
 def property_details(request, property_id):
     """ A view to show property details """
 

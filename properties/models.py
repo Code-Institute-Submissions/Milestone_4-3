@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Category(models.Model):
 
@@ -46,6 +46,7 @@ class Property(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image_name = models.ImageField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.short_description

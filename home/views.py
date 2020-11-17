@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from properties.models import Property
 
+
 def index(request):
     """ view that returns the index page """
 
