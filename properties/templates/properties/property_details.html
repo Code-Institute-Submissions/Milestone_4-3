@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+{% endblock %}
 
+{% block extra_js %}
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+{% endblock %}
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -24,6 +30,13 @@
                         </a>
                     {% endif %}
                 </div>
+
+<div class="input-daterange input-group" id="datepicker">
+    <input type="text" class="input-sm form-control" name="start" />
+    <span class="input-group-addon">to</span>
+    <input type="text" class="input-sm form-control" name="end" />
+</div>
+
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="property-details-container mb-5 mt-md-5">
@@ -47,4 +60,17 @@
             </div>
         </div>
     </div>
+
+
+<script>
+$.getJSON( "ajax/test.json", function( data ) {
+ alert(data);
+});
+
+
+$('.input-daterange').datepicker({
+    datesDisabled: ['11/06/2020', '11/21/2020']
+});
+</script>
+
 {% endblock %}

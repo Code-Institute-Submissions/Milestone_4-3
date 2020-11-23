@@ -24,4 +24,5 @@ urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('accounts/', include('allauth.urls')),
     path('profiles/', include('profiles.urls')),
     path('properties/', include('properties.urls')),
+    path('booking/', include('booking.urls')),
 ]

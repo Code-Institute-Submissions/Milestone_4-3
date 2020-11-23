@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'profiles',
     'properties',
+    'booking',
 
     'crispy_forms',
     'debug_toolbar',
@@ -87,6 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',  # required for media folder
                 'django.contrib.messages.context_processors.messages',
                 'profiles.user_context_processor.user_details',
+                'booking.contexts.booking_contents'
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
