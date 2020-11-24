@@ -30,13 +30,6 @@
                         </a>
                     {% endif %}
                 </div>
-
-<div class="input-daterange input-group" id="datepicker">
-    <input type="text" class="input-sm form-control" name="start" />
-    <span class="input-group-addon">to</span>
-    <input type="text" class="input-sm form-control" name="end" />
-</div>
-
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="property-details-container mb-5 mt-md-5">
@@ -59,17 +52,44 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+        <form class="form" action="" method="POST">
+        {% csrf_token %}
+            <div class="control-group">
+                <div class="group-title">Booking</div>
+                <div class="group-container row">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="id_start" class="requiredField">Check In</label>
+                                <input type="text" class="form-control pick-date" name="start" id="id_start" required/>
+                            </div>
+                        </div>  
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="id_start" class="requiredField">Check Out</label>
+                                <input type="text" class="form-control pick-date" name="end" id="id_end" required/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-container row">
+                    <button class="btn-submit book-now" type="submit" >Book Now</button>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </div>    
+            </div>
+        </form>
+        </div></div>
+
+
     </div>
 
 
 <script>
-$.getJSON( "ajax/test.json", function( data ) {
- alert(data);
-});
-
-
 $('.input-daterange').datepicker({
-    datesDisabled: ['11/06/2020', '11/21/2020']
+    datesDisabled: [{{ reserved|safe}}]
 });
 </script>
 

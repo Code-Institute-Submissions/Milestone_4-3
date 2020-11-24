@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from .models import Property
 from .forms import PropertyForm, PropertyImagesForm
+from booking.models import Booking
+import datetime
+from django.template.defaultfilters import register
+
 
 from django.contrib.auth.decorators import login_required
 
@@ -33,9 +37,23 @@ def property_details(request, property_id):
     """ A view to show property details """
 
     property = get_object_or_404(Property, pk=property_id)
+    reserved_dates = []
+
+    reserved_all = Booking.objects.filter(book_property=property, book_check_in__gte=datetime.date.today())
+    for reserved in reserved_all:
+        delta = reserved.book_check_out - reserved.book_check_in
+
+        for i in range(delta.days + 1):
+            format_date = (reserved.book_check_in + datetime.timedelta(days=i)).strftime("'%m/%d/%Y'")
+            reserved_dates.append(format_date)
+            # print(format_date)
+
+    separator = ', '
+    reserved = separator.join(reserved_dates)
 
     context = {
         'property': property,
+        'reserved': reserved
     }
 
     return render(request, 'properties/property_details.html', context)
