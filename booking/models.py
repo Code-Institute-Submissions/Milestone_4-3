@@ -11,7 +11,7 @@ class Booking(models.Model):
     book_check_in = models.DateField(("Date"), default=datetime.date.today)
     book_check_out = models.DateField(("Date"), default=datetime.date.today)
 
-    def __str__(self):
-        return f'{self.book_user} booked From {self.book_check_in} To {self.book_check_out}'
+    # def __str__(self):
+    #     return f'{self.book_user} booked From {self.book_check_in} To {self.book_check_out}'
 
 
