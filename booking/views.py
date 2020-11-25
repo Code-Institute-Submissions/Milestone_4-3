@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib import messages
 import datetime
 
@@ -60,7 +60,7 @@ def add_booking(request, property_id):
             for i in range(len(book_ses)):
                 one_book = book_ses[i]    
                 if(one_book['property'] == p):
-                    print("do date check")
+                    # print("do date check")
                     old_in = datetime.datetime.strptime(one_book['check_in'],'%Y-%m-%d')
                     old_out = datetime.datetime.strptime(one_book['check_out'], '%Y-%m-%d')
 
@@ -68,20 +68,32 @@ def add_booking(request, property_id):
                     middle2 = datetime.datetime.strptime(check_out_date, '%m/%d/%Y')
 
                     if (old_in <= middle <= old_out) or (old_in <= middle2 <= old_out):
-                        print("change in interval, update")
+                        # print("change in interval, update")
                         book_ses[i] = {'property': p, 'check_in': check_in, 'check_out': check_out}
                         break
                     else:
-                        print("new interval, add")
+                        # print("new interval, add")
                         book_ses.append({'property': p, 'check_in': check_in, 'check_out': check_out})
                     # print(f"sdsdsdso{old_in}{middle}{old_out}")
 
             # book_ses[property_id][1] = {'check_in': check_in, 'check_out': check_out}
         else:
             book_ses.append({'property': p, 'check_in': check_in, 'check_out': check_out})
-            print('to add')
+            # print('to add')
 
         request.session['book_ses'] = book_ses
 
     print(request.session['book_ses'])    
     return redirect(redirect_url)
+
+def remove_booking(request, book_index):
+
+    try:
+        booking = request.session.get('book_ses', [])
+        # del booking[book_index]
+        del(booking[int(book_index)])
+        request.session['book_ses'] = booking
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        return HttpResponse(status=500)

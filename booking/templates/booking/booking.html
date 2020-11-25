@@ -47,12 +47,15 @@
                                     </td>
                                     <td class="py-3 w-25">
                                         <p class="my-0">{{ item.days }}</p>
+                                        <p class="my-0 small">From {{ item.check_in }} to {{ item.check_out }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">
+                                        <div class="my-0">
                                         {% comment %} {% widthratio  item.days 1 item.property.daily_price %} {% endcomment %}
                                         {{ item.subtotal }} &pound;
-                                        </p>
+                                        </div>
+                                        <a class="update-link text-info float-left" href="{% url 'property_details' item.property.id %}"><small>Update</small></a>
+                                        <a class="remove-item text-danger float-right" id="remove_{{ forloop.counter0 }}"><small>Remove</small></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -92,4 +95,21 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+        // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var book_index = $(this).attr('id').split('remove_')[1];
+        var url = `/booking/remove/${book_index}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}

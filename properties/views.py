@@ -51,9 +51,28 @@ def property_details(request, property_id):
     separator = ', '
     reserved = separator.join(reserved_dates)
 
+    book_ses = request.session.get('book_ses', [])
+    booked_dates=[]
+
+    if any(d['property'] == property_id for d in book_ses):
+        # for one_book in book_ses:
+        for i in range(len(book_ses)):
+            one_book = book_ses[i]    
+            if(one_book['property'] == property_id):
+                old_in = datetime.datetime.strptime(one_book['check_in'],'%Y-%m-%d')
+                old_out = datetime.datetime.strptime(one_book['check_out'], '%Y-%m-%d')  
+                delta_old = old_out-old_in  
+                for i in range(delta_old.days + 1):
+                    format_date = (old_in + datetime.timedelta(days=i)).strftime("'%Y-%m-%d'")
+                    booked_dates.append(format_date)
+                print('ok')
+
+    booked = separator.join(booked_dates)
+
     context = {
         'property': property,
-        'reserved': reserved
+        'reserved': reserved,
+        'booked': booked
     }
 
     return render(request, 'properties/property_details.html', context)

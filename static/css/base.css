@@ -459,6 +459,10 @@ small {
     color: #fff;
   }
 
+  .highlighted-cal-dates {
+background-color: rgb(164, 164, 255);
+  }
+
   /* Footer */
 footer {
     float: left;
@@ -544,4 +548,11 @@ footer.light-footer .bottom-line a {
 .book-now {
     margin: 0px 15px;
     width: 100%;
+}
+
+/* booking */
+.update-link,
+.remove-item {
+    cursor: pointer;
+    display: inline-block;
 }
