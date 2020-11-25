@@ -74,26 +74,25 @@ def add_booking(request, property_id):
                     else:
                         # print("new interval, add")
                         book_ses.append({'property': p, 'check_in': check_in, 'check_out': check_out})
-                    # print(f"sdsdsdso{old_in}{middle}{old_out}")
 
-            # book_ses[property_id][1] = {'check_in': check_in, 'check_out': check_out}
         else:
             book_ses.append({'property': p, 'check_in': check_in, 'check_out': check_out})
             # print('to add')
 
         request.session['book_ses'] = book_ses
 
-    print(request.session['book_ses'])    
+    messages.success(request, 'Your booking was added')
     return redirect(redirect_url)
 
 def remove_booking(request, book_index):
 
     try:
         booking = request.session.get('book_ses', [])
-        # del booking[book_index]
         del(booking[int(book_index)])
         request.session['book_ses'] = booking
+        messages.success(request, 'Your booking was removed')
         return HttpResponse(status=200)
 
     except Exception as e:
+        messages.error(request, 'Unable to remove booking, please try again')
         return HttpResponse(status=500)

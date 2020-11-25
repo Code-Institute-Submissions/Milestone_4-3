@@ -29,7 +29,6 @@ def listings(request):
     context = {
         'properties': properties,
     }
-    print("something")
     return render(request, 'properties/properties.html', context)
 
 
@@ -84,9 +83,10 @@ def add_property(request):
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Property added')
             return redirect(reverse('add_property'))
-        # else:
-            # error
+        else:
+            messages.error(request, 'Property not added, please try again')
     else:
         form = PropertyForm()
 
@@ -125,6 +125,7 @@ def delete_property(request, property_id):
     """ Delete a property """
     property = get_object_or_404(Property, pk=property_id)
     property.delete()
+    messages.success(request, 'Property removed')
     return redirect(reverse('properties'))
 
 @login_required

@@ -8,4 +8,31 @@
     <div class="toast-body">
         {{ message }}
     </div>
+
+    {% if total %}
+            <p class="logo-font text-black py-1 ml-3">Your Bookings ({{ booking_count }})</p>
+            <div class="bag-notification-wrapper">
+                {% for item in booking_items %}
+                    <div class="row">
+                        <div class="col-3 my-1 ml-3">
+                            <img class="w-50" src="{{ item.property.image_name.url }}">
+                        </div>
+                        <div class="col-9">
+                            <p class="my-0 ml-3"><strong>{{ item.property.short_description }}</strong></p>
+                            <p class="my-0 small ml-3">{{ item.check_in }} to {{ item.check_out }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col ml-2">
+                    <a href="{% url 'view_booking' %}" class="btn btn-submit">
+                        <span class="text-uppercase">Secure Checkout</span>
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+    {% endif %}
 </div>
