@@ -33,6 +33,9 @@ small {
     display: block;
 }
 
+.clearall {
+    clear: both;
+}
 .icon {
     align-items: center;
     display: inline-flex;
