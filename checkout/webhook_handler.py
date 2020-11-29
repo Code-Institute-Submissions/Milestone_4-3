@@ -81,8 +81,6 @@ class StripeWH_Handler:
                     original_booking=booking,
                     stripe_pid=pid,
                 )
-                # FIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                # for item_id, item_data in json.loads(booking).items():
                 for i in range(len(json.loads(booking))):
                     one_book = json.loads(booking)[i]
                     delta = datetime.datetime.strptime(one_book['check_out'], '%Y-%m-%d') - datetime.datetime.strptime(one_book['check_in'], '%Y-%m-%d')
