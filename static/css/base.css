@@ -82,13 +82,23 @@ small {
     color: red;
 }
 
-#id_default_country, #id_default_country option:not(:first-child) {
+#id_default_country, #id_default_country option:not(:first-child),
+#id_default_type option:not(:first-child){
     color: #000;
 }
 
 #id_default_country option:first-child {
     color: #a7a7a7;
 }
+
+#profile-update-form .form-control {
+    color: #a7a7a7;
+}
+
+#profile-update-form input::placeholder {
+    color: #aab7c4;
+}
+
 
 /* Property Form */
 
@@ -234,6 +244,7 @@ small {
     color: #ff2929;
     text-decoration: none;
 }
+
 
 /* Main page */
 
