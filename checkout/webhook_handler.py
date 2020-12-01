@@ -97,7 +97,7 @@ class StripeWH_Handler:
                     street_address1__iexact=billing_details.address.line1,
                     street_address2__iexact=billing_details.address.line2,
                     county__iexact=billing_details.address.state,
-                    total=total,
+                    order_total=total,
                     original_book=booking,
                     stripe_pid=pid,
                 )
@@ -124,7 +124,8 @@ class StripeWH_Handler:
                     street_address1=billing_details.address.line1,
                     street_address2=billing_details.address.line2,
                     county=billing_details.address.state,
-                    original_booking=booking,
+                    order_total=total,
+                    original_book=booking,
                     stripe_pid=pid,
                 )
                 for i in range(len(json.loads(booking))):
@@ -140,6 +141,24 @@ class StripeWH_Handler:
                         check_out=one_book['check_out'],
                         days=days,
                     )
+
+                    """Send the user a confirmation email"""
+                    owner_email = property.owner.email
+                    subject = render_to_string(
+                        'checkout/confirmation_emails/confirmation_owner_subject.txt',
+                        {'order': order})
+                    body = render_to_string(
+                        'checkout/confirmation_emails/confirmation_owner_body.txt',
+                        {'order': order, 'property': property.short_description, 'check_in': one_book['check_in'],
+                            'check_out': one_book['check_out'], 'contact_email': settings.DEFAULT_FROM_EMAIL})
+                    
+                    send_mail(
+                        subject,
+                        body,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [owner_email]
+                    )        
+
                     order_line_item.save()
             except Exception as e:
                 if order:
