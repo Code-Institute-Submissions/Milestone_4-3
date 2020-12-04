@@ -7,7 +7,8 @@ class PropertyForm(forms.ModelForm):
 
     class Meta:
         model = Property
-        fields = '__all__'
+        exclude = ["owner"]
+        # fields = '__all__'
 
     image_name = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 

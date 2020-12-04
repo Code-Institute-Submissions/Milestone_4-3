@@ -83,6 +83,7 @@ def add_property(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.owner = request.user
             form.save()
             messages.success(request, 'Property added')
             return redirect(reverse('add_property'))
@@ -105,6 +106,7 @@ def edit_property(request, property_id):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES, instance=property)
         if form.is_valid():
+            form.instance.owner = request.user
             property = form.save()
             messages.success(request, 'Property Successfully updated')
             return redirect(reverse('property_details', args=[property.id]))

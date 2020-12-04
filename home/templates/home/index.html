@@ -15,7 +15,11 @@
     <div class="carousel-inner">
       {% for carousel in carousel_items %}
         <div class="carousel-item {% if forloop.first %} active {% endif %}">
+          {% if property.image_name %}
           <img src="{{ carousel.image_name.url }}" class="d-block w-100" alt="{{ carousel.short_description }}">
+          {% else %}
+          <img class="d-block w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ carousel.short_description }}">
+          {% endif %}
           <div class="carousel-caption d-none d-md-block">
             <h5>{{ carousel.short_description }}</h5>
             <p>{{ carousel.long_description }}</p>
@@ -49,7 +53,11 @@
                     <div class="col-md-4">
                         <div class="properties-box">
                             <div class="properties-thumb">
+                                {% if property.image_name %}
                                 <img src="{{ property.image_name.url }}" alt="{{ property.short_description }}">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ property.short_description }}">
+                                {% endif %}
                                 <span class="spn-status"> For Rent </span>
                                 <ul class="property-info">
                                     <li> 
@@ -67,7 +75,7 @@
                             <a class="property-sh-more" href="{% url 'property_details' property.id %}"><i class="fas fa-info"></i></a>
                             </div>
                             <h3><a href="{% url 'property_details' property.id %}" title="">One Property</a></h3>
-                            <span class="price">120 pcm</span>
+                            <span class="price">{{ property.daily_price }} ppd</span>
                         </div>
                     </div>                                
                    {% endfor %}  

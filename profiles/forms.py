@@ -9,8 +9,7 @@ class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
         type = d_forms.ChoiceField(choices=[("OWNER", "Owner"), ("TENANT", "Tenant")])
-        # self.fields['property_owner'] = forms.BooleanField(required=False)
-        # self.fields['property_owner'].label = 'Register as property owner ?'
+        self.fields['type'] = type
         self.fields['email'].widget.attrs['autofocus'] = 'autofocus'
         self.fields['username'].widget.attrs['autofocus'] = ''
 
