@@ -24,11 +24,6 @@ def add_booking(request, property_id):
 
     guest_id = request.user
 
-    # YYYY-MM-DD
-    # datetime(
-    # strftime("%Y-%m-%d")
-    # datetime.datetime.strptime('10/05/2012', '%d/%m/%Y').strftime('%Y-%m-%d')
-
     check_in_date = request.POST.get('book_start')
     check_out_date = request.POST.get('book_end')
 
@@ -50,10 +45,6 @@ def add_booking(request, property_id):
         messages.error(request, 'This property is not available on your selected dates')           
 
     else:    
-        # dates are valid -- will have to save once payment is done            
-        # property = get_object_or_404(Property, pk=property_id)
-        # booking = Booking(book_user = request.user, book_property = property, book_check_in = check_in,  book_check_out = check_out )
-        # booking.save()
 
         if any(d['property'] == p for d in book_ses):
             # for one_book in book_ses:
@@ -68,16 +59,13 @@ def add_booking(request, property_id):
                     middle2 = datetime.datetime.strptime(check_out_date, '%m/%d/%Y')
 
                     if (old_in <= middle <= old_out) or (old_in <= middle2 <= old_out):
-                        # print("change in interval, update")
                         book_ses[i] = {'property': p, 'check_in': check_in, 'check_out': check_out}
                         break
                     else:
-                        # print("new interval, add")
                         book_ses.append({'property': p, 'check_in': check_in, 'check_out': check_out})
 
         else:
             book_ses.append({'property': p, 'check_in': check_in, 'check_out': check_out})
-            # print('to add')
 
         request.session['book_ses'] = book_ses
 

@@ -39,13 +39,13 @@
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">£ {{ property.monthly_price }} pcm</p>
+                                            <p class="lead mb-0 text-left font-weight-bold">£ {{ property.monthly_price }} per day</p>
                                             {% if property.rating %}
                                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ property.rating }} / 5</small>
                                             {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
-                                            {% if request.user.is_superuser %}
+                                            {% if request.user.is_superuser or request.user ==  property.owner %}
                                                 <small class="ml-3">
                                                     <a href="{% url 'edit_property' property.id %}">Edit</a> | 
                                                     <a class="text-danger" href="{% url 'delete_property' property.id %}">Delete</a>

@@ -53,15 +53,15 @@
                                 <span class="spn-status"> For Rent </span>
                                 <ul class="property-info">
                                     <li> 
-                                        <i class="fa  fa-retweet"> </i> <span>1913 sqft </span>                                     
+                                        <i class="fa  fa-retweet"> </i> <span>{{ property.area }} sqft </span>                                     
                                     </li>
                                     <li class="li-rl"></li>
                                     <li> 
-                                        <i class="fa  fa-bed"></i><span>  5   </span>                                 
+                                        <i class="fa  fa-bed"></i><span> {{ property.beds }} </span>                                 
                                     </li> 
                                     <li class="li-rl"></li>
                                     <li> 
-                                        <i class="fa  fa-building"> </i> <span>3   </span>                                
+                                        <i class="fa  fa-building"> </i> <span> {{ property.rooms }} </span>                                
                                     </li>
                                 </ul> 
                             <a class="property-sh-more" href="{% url 'property_details' property.id %}"><i class="fas fa-info"></i></a>

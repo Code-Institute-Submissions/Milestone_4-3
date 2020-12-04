@@ -50,9 +50,11 @@
           <a class="nav-link" href="{{ url }}">Home</a>
         </li>
         {% url 'properties' as url %}
+        {% if user_type == 'TENANT' or not request.user.is_authenticated%}
         <li class="nav-item {% if request.path == url %}active{% endif %}">
           <a class="nav-link" href="{{ url }}">Rent Property</a>
         </li>
+        {% endif %}
         {% if request.user.is_authenticated %}
             {% if request.user.is_superuser or user_type == 'OWNER'%}
             {% url 'listings' as url %}
@@ -78,21 +80,13 @@
                <a class="nav-link" href="{% url 'account_login' %}">LogIn</a>
             </li>
         {% endif %}
-
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser or user_type == 'TENANT'%}
           <li class="nav-item">
                <a class="nav-link" href="{% url 'view_booking' %}">My Bookings</a>
             </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id= "navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown link
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Drop 1 Link</a>
-            <a class="dropdown-item" href="#">Drop 2 Link</a>
-            <a class="dropdown-item" href="#">Drop 3 Link</a>
-          </div>
-          </li>
+          {% endif %}
+        {% endif %}
         </ul>
       </div>
     </nav>

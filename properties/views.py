@@ -24,7 +24,8 @@ def all_properties(request):
 
 @login_required
 def listings(request):
-    properties = Property.objects.all()
+    all_properties = Property.objects.all()
+    properties = all_properties.filter(owner=request.user)
 
     context = {
         'properties': properties,

@@ -51,7 +51,6 @@ class StripeWH_Handler:
         booking = intent.metadata.booking
         save_info = intent.metadata.save_info
 
-        # CHECK HEREEEEE
         billing_details = intent.charges.data[0].billing_details
         total = round(intent.charges.data[0].amount / 100, 2)
 
